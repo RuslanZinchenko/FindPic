@@ -1,0 +1,34 @@
+@media (min-width: 480px) {
+
+    .modal__backdrop {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        height: 28.625rem;
+        width: 58.75%;
+    }
+
+    .modal__backdrop--window {
+        background-color: #fff;
+        height: 30rem;
+    }
+
+    .modal__backdrop--button {
+        background-color: #673ab7;
+        height: 2.125rem;
+        width: 7.1875rem;
+        margin: 0 auto;
+        border-radius: 15px;
+        margin-top: 1rem;
+        display: flex;
+        justify-content: space-around;
+        align-items: center; 
+    }
+
+    .bold{
+        font-weight: 600;
+        font-size: 1.3rem;
+    }
+
+}
