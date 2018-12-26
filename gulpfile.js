@@ -4,7 +4,7 @@ const gulp = require('gulp');
 const sass = require('gulp-sass');
 const postcss = require('gulp-postcss');
 const autoprefixer = require('autoprefixer');
-const cssnano = require('gulp-cssnano');
+const csso = require('gulp-csso');
 const gcmq = require('gulp-group-css-media-queries');
 const del = require('del');
 const htmlmin = require('gulp-htmlmin');
@@ -17,95 +17,91 @@ const babel = require('gulp-babel');
 const uglify = require('gulp-uglify');
 const concat = require('gulp-concat');
 const rename = require('gulp-rename');
-const browserSync = require('browser-sync').create();
+const server = require('browser-sync').create();
 const sequence = require('run-sequence');
 
-gulp.task('html', () =>
-  gulp
+gulp.task('html', () => {
+  return gulp
     .src('./src/*.html')
     .pipe(rigger())
     .pipe(
       htmlmin({
-        collapseWhitespace: true,
-      }),
+        collapseWhitespace: true
+      })
     )
-    .pipe(gulp.dest('./build')),
-);
+    .pipe(gulp.dest('./build'));
+});
 
-gulp.task('styles', () =>
-  gulp
-    .src('./src/scss/styles.scss')
+gulp.task('styles', () => {
+  return gulp
+    .src('./src/sass/styles.scss')
     .pipe(plumber())
     .pipe(
       stylelint({
-        reporters: [{ formatter: 'string', console: true }],
-      }),
+        reporters: [{ formatter: 'string', console: true }]
+      })
     )
     .pipe(sass())
     .pipe(postcss([autoprefixer()]))
     .pipe(gcmq())
     .pipe(gulp.dest('./build/css'))
-    .pipe(cssnano())
+    .pipe(csso())
     .pipe(rename('styles.min.css'))
     .pipe(gulp.dest('./build/css'))
-    .pipe(browserSync.stream()),
-);
+    .pipe(server.stream());
+});
 
-gulp.task('scripts', () =>
-  gulp
+gulp.task('scripts', () => {
+  return gulp
     .src('./src/js/**/*.js')
     .pipe(plumber())
     .pipe(
       babel({
-        presets: ['env'],
-      }),
+        presets: ['@babel/env']
+      })
     )
     .pipe(concat('scripts.js'))
     .pipe(gulp.dest('./build/js'))
     .pipe(uglify())
     .pipe(rename('scripts.min.js'))
-    .pipe(gulp.dest('./build/js')),
-);
+    .pipe(gulp.dest('./build/js'));
+});
 
-gulp.task('svg-sprite', () =>
-  gulp
-    .src('./src/img/sprite/**/*.svg')
-    .pipe(
-      svgstore({
-        inlineSvg: true,
-      }),
-    )
+gulp.task('sprite', () => {
+  return gulp
+    .src('./src/images/icons/icon-*.svg')
+    .pipe(svgstore({ inlineSvg: true }))
     .pipe(rename('sprite.svg'))
-    .pipe(gulp.dest('./build/img')),
-);
+    .pipe(gulp.dest('./build/images'));
+});
 
-gulp.task('images', () =>
-  gulp
-    .src(['./src/img/**/*.{png,jpg,jpeg,svg}', '!./src/img/sprite/**/*.*'])
+gulp.task('images', () => {
+  return gulp
+    .src(['./src/images/**/*.{png,jpg,jpeg,svg}', '!./src/images/icons/**/*'])
     .pipe(
       imagemin([
         imagemin.jpegtran({ progressive: true }),
         imagemin.optipng({ optimizationLevel: 3 }),
         imagemin.svgo({
-          plugins: [{ removeViewBox: false }, { cleanupIDs: false }],
-        }),
-      ]),
+          plugins: [{ removeViewBox: false }, { cleanupIDs: false }]
+        })
+      ])
     )
-    .pipe(gulp.dest('./build/img')),
-);
-
-gulp.task('fonts', () =>
-  gulp.src('./src/fonts/**/*.{woff,woff2}').pipe(gulp.dest('./build/fonts')),
-);
-
-gulp.task('watch', () => {
-  gulp.watch('src/**/*.html', ['html']).on('change', browserSync.reload);
-  gulp.watch('src/scss/**/*.scss', ['styles']);
-  gulp.watch('src/js/**/*.js', ['scripts']);
+    .pipe(gulp.dest('./build/images'));
 });
 
-gulp.task('serve', ['styles'], () =>
-  browserSync.init({
+gulp.task('fonts', () => {
+  return gulp.src('./src/fonts/**/*').pipe(gulp.dest('./build/fonts'));
+});
+
+gulp.task('watch', () => {
+  gulp.watch('src/**/*.html', ['html']).on('change', server.reload);
+  gulp.watch('src/sass/**/*.scss', ['styles']);
+  gulp.watch('src/js/**/*.js', ['scripts']).on('change', server.reload);
+});
+
+gulp.task('serve', ['styles'], () => {
+  return server.init({
     server: './build',
     notify: false,
     open: true,
@@ -113,25 +109,20 @@ gulp.task('serve', ['styles'], () =>
     ui: false,
     logPrefix: 'DevServer',
     host: 'localhost',
-    port: 3000,
-  }),
-);
+    port: 3000
+  });
+});
 
 gulp.task('del:build', () => del('./build'));
 
 gulp.task('prepare', () => del(['**/.gitkeep', 'README.md', 'banner.png']));
 
-gulp.task('build', cb =>
+gulp.task('build', callback =>
   sequence(
     'del:build',
-    'svg-sprite',
-    'images',
-    'fonts',
-    'styles',
-    'html',
-    'scripts',
-    cb,
-  ),
+    ['sprite', 'images', 'fonts', 'styles', 'html', 'scripts'],
+    callback
+  )
 );
 
-gulp.task('start', cb => sequence('build', 'serve', 'watch'));
+gulp.task('start', callback => sequence('build', 'serve', 'watch', callback));

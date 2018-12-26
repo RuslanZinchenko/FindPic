@@ -436,6 +436,15 @@ ul {
   /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
 }
 
+.modal {
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+}
+
 @media (min-width: 480px) {
   .main__header {
     max-width: 94.6%;
@@ -498,13 +507,6 @@ ul {
     padding-left: 1.0625rem;
   }
 
-  .form__input:-ms-input-placeholder {
-    font-family: 'Roboto', sans-serif;
-    color: #adafb2;
-    font-size: 0.625rem;
-    padding-left: 1.0625rem;
-  }
-
   .form__input::-ms-input-placeholder {
     font-family: 'Roboto', sans-serif;
     color: #adafb2;
@@ -533,5 +535,48 @@ ul {
     font-family: 'Comfortaa', sans-serif;
     font-size: 0.5rem;
     font-weight: 700;
+  }
+
+  .modal__backdrop {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    height: 28.625rem;
+    width: 58.75%;
+  }
+
+  .modal__backdrop--window {
+    background-color: #fff;
+    height: 30rem;
+  }
+
+  .modal__backdrop--button {
+    background-color: #673ab7;
+    height: 2.125rem;
+    width: 7.1875rem;
+    margin: 0 auto;
+    border-radius: 15px;
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .bold {
+    font-weight: 600;
+    font-size: 1.3rem;
+  }
+}
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .modal {
+    background: rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
   }
 }
