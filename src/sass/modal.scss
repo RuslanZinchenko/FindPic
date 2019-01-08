@@ -1,0 +1,49 @@
+@media (min-width: 480px) {
+  
+  .modal__backdrop {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: auto;
+    width: 90%;
+  }
+
+  .modal__backdrop--window {
+    background-color: #fff;
+    height: 17rem;
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  .modal__backdrop--button {
+    background-color: #673ab7;
+    height: 2.125rem;
+    width: 7.1875rem;
+    margin: 0 auto;
+    border-radius: 15px;
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .bold {
+    font-weight: 600;
+    font-size: 1.3rem;
+  }
+
+}
+
+@media (min-width: 1024px) {
+
+  .modal__backdrop {
+    width: 58.75%;
+  }
+
+  .modal__backdrop--window {
+    width: 58.83%;
+    height: 22rem;
+  }
+
+}

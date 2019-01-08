@@ -1,0 +1,11 @@
+.modal {
+  background: $modal-background;
+  @include modal-window;
+}
+
+@media (-webkit-min-device-pixel-ratio: 2), (-o-min-device-pixel-ratio: 2/1), (min-resolution: 192dpi) {
+  .modal { 
+    background: $modal-background;
+    @include modal-window;
+  }
+}

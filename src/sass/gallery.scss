@@ -1,0 +1,86 @@
+@media (min-width: 480px) {
+
+.gallery-wrapper {
+  // margin: 0;
+  // padding: 0;
+  // display: flex;
+  // flex-wrap: wrap;
+  // justify-content: space-between;
+  // width: 73.38%;
+  // margin: auto;
+  // margin-top: 28px;
+}
+
+.gallery-wrapper__gallery {
+  // margin: 0;
+  // padding: 0;
+}
+
+.gallery__img-list {
+  // margin: auto;
+  // display: flex;
+  // flex-wrap: wrap;
+  // justify-content: center;
+  width: 250px;
+	height: auto;
+	// border: 1px solid black;
+	margin: 0 auto;
+	text-align: center;
+	padding: 15px 0;
+}
+
+.gallery__img-list :last-child {
+  margin-bottom: 0;
+}
+
+.img-list__imgs {
+  // display: block;
+  width: 209px;
+  height: 122px;
+  // margin-right: 15px;
+  // margin-bottom: 15px;
+  // background-color: #231f20;
+  background-color: grey;
+	margin: 0 auto;
+	margin-bottom: 15px;
+}
+
+.imgs__item {
+  // height: 100%;
+}
+
+.gallery-wrapper__show-more-btn {
+  display: block;
+  width: 145px;
+  height: 1.625rem;
+  text-align: center;
+  padding: 7px 26px;
+  background-color: #cddc39;
+  border: none;
+  border-radius: 0.5rem;
+  -webkit-border-radius: 0.5rem;
+  -moz-border-radius: 0.5rem;
+  -ms-border-radius: 0.5rem;
+  -o-border-radius: 0.5rem;
+  margin: 0 auto;
+  margin-top: 15px;
+  color: #ffffff;
+  font-family: 'Comfortaa', sans-serif;
+  font-size: 0.5rem;
+  font-weight: 700;
+}
+
+}
+
+@media (min-width: 1024px) {
+
+.gallery__img-list {
+  width: 900px;
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
+  padding-bottom: 0;
+  margin-top: 17px;
+}
+
+}
