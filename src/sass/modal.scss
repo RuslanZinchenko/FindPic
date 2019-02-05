@@ -1,49 +1,117 @@
-@media (min-width: 480px) {
-  
-  .modal__backdrop {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    height: auto;
-    width: 90%;
-  }
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(37, 45, 58, 0.7);
+}
 
-  .modal__backdrop--window {
-    background-color: #fff;
-    height: 17rem;
-    width: 80%;
-    margin: 0 auto;
-  }
+.modal-hidden {
+  display: none;
+}
 
-  .modal__backdrop--button {
-    background-color: #673ab7;
-    height: 2.125rem;
-    width: 7.1875rem;
-    margin: 0 auto;
-    border-radius: 15px;
-    margin-top: 1rem;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-  }
+.modal-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 90%;
+  min-height: auto;
+  //background-color: #ffffff;
+  //box-shadow: 0 4px 4px rgba(1, 2, 2, 0.2);
+  border-radius: 2px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+}
 
-  .bold {
-    font-weight: 600;
-    font-size: 1.3rem;
-  }
+// .close-btn {
+//   position: absolute;
+//   top: 0;
+//   right: 0;
+//   display: inline-block;
+//   width: 45px;
+//   height: 45px;
+//   background-image: url("https://banner2.kisspng.com/20180420/gaw/kisspng-greek-alphabet-letter-case-x-letter-x-5adaa3dd1eff64.374524351524278237127.png");
+//   background-size: contain;
+//   background-position: center;
+//   background-repeat: no-repeat;
+//   cursor: pointer;
+//   transition: transform 0.1s linear;
+// }
 
+// .close-btn:hover {
+//   transform: rotate(90deg);
+// 
+// .close-btn {
+//   position: absolute;
+//   top: 0;
+//   right: 0;
+//   display: inline-block;
+//   width: 45px;
+//   height: 45px;
+//   background-image: url("https://banner2.kisspng.com/20180420/gaw/kisspng-greek-alphabet-letter-case-x-letter-x-5adaa3dd1eff64.374524351524278237127.png");
+//   background-size: contain;
+//   background-position: center;
+//   background-repeat: no-repeat;
+//   cursor: pointer;
+//   transition: transform 0.1s linear;
+// }
+
+// .close-btn:hover {
+//   transform: rotate(90deg);
+// }
+
+// .modal__backdrop {
+//   position: absolute;
+//   top: 50%;
+//   left: 50%;
+//   transform: translate(-50%, -50%);
+//   height: auto;
+//   width: 58.75%;
+// }
+
+// .modal__backdrop--window {
+//   background-color: #fff;
+//   height: inherit;
+// }
+
+
+.modal__backdrop--button {
+  background-color: #673ab7;
+  height: 2.125rem;
+  width: 7.1875rem;
+  margin: 0 auto;
+  border-radius: 15px;
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.modal-buttons {
+  cursor: pointer;
+}
+
+.bold {
+  font-weight: 600;
+  font-size: 1.3rem;
+}
+
+@media (min-width: 640px) {
+  .modal-content {
+    min-width: 65%;
+  }
 }
 
 @media (min-width: 1024px) {
-
-  .modal__backdrop {
-    width: 58.75%;
+  .modal-content {
+    min-width: 50%;
   }
-
-  .modal__backdrop--window {
-    width: 58.83%;
-    height: 22rem;
-  }
-
 }
